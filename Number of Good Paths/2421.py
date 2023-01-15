@@ -39,5 +39,5 @@ class Solution:
                 lookup[ufind(u)] += 1
         ans += N
         return ans
-Console
+
 
