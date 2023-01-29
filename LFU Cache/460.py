@@ -6,18 +6,28 @@ class LFUCache:
         self.count = collections.defaultdict(int)
         self.buckets = collections.defaultdict(set)
         self.buckets_by_recency = collections.defaultdict(collections.deque)
-        self.min = 10**20
+        self.min = 10 ** 20
+    
+
+    def increment(self, key: int):
+        self.buckets[self.count[key]].remove(key)
+        if self.min == self.count[key] and len(self.buckets[self.count[key]]) ==0:
+            self.min +=1
+        self.count[key] += 1
+        if self.min > self.count[key]:
+            self.min = self.count[key]
+        self.buckets[self.count[key]].add(key)
+        self.buckets_by_recency[self.count[key]].append(key)
 
     def get(self, key: int) -> int:
         if key in self.dict:
-            self.buckets[self.count[key]].remove(key)
-            if self.min == self.count[key] and len(self.buckets[self.count[key]]) ==0:
-                self.min +=1
-            self.count[key] += 1
-            if self.min > self.count[key]:
-                self.min = self.count[key]
-            self.buckets[self.count[key]].add(key)
-            self.buckets_by_recency[self.count[key]].append(key)
+            self.increment(key)
+            return self.dict[key]
+        return -1
+
+    def get(self, key: int) -> int:
+        if key in self.dict:
+            self.increment(key)
             return self.dict[key]
         return -1
 
