@@ -6,7 +6,7 @@ class Solution:
         rows = [[] for _ in range(numRows)]
 
         row = 0
-        direction = 0
+        direction = 1
         for c in s:
             rows[row].append(c) 
             row += direction
