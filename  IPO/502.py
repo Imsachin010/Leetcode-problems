@@ -1,6 +1,6 @@
 class Solution:
     def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:
-        projects = projects = collections.deque(sorted(list(zip(profits,capital))))
+        projects = projects = collections.deque(sorted(list(zip(profits,capital)),  key=lambda p: p[1]))
         selectable = []
 
         N = len(projects)
