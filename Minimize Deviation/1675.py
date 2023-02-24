@@ -12,4 +12,13 @@ class Solution:
         mn = min(nums)
         best = 10**20
 
-        
+        while heap[0] %2 ==0:
+            mx = -heapq.heappop(heap)
+
+            best = min(best, mx-mn)
+
+            heapq.heappush(heap, -(mx//2))
+            mn = min(mn,mx//2)
+        mx = -heap[0]
+        best = min(best, mx-mn)
+        return best
