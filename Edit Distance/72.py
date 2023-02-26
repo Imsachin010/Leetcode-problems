@@ -26,4 +26,4 @@ class Solution:
             has_cache[index1][index2] = True
             cache[index1][index2] = best
             return best
-            return minDist(0, 0)
+        return minDist(0, 0)
