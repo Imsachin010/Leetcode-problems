@@ -23,5 +23,6 @@ class Solution:
                 rolling_hash -= (ord(haystack[i - M]) - ord('a')+ 1) * BM
             rolling_hash %=P
 
-            
+            if i + 1 >= M and rolling_hash == needle_hash:
+                return i - M + 1
         return -1
