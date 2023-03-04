@@ -24,4 +24,8 @@ class Solution:
                 total += M -nx
             return total 
 
-        
+        total = 0
+        for g, t in groupby(nums, key = lambda x: minK <= x <= maxK):
+            if g:
+                total += solve(list(t))
+        return total
